@@ -86,6 +86,9 @@ class ItemService
         if ($dateDueStr != '') {
             try {
                 $dateDue = DateTime::createFromFormat('Y-m-d', $dateDueStr);
+                if (!is_object($dateDue)) {
+                    throw new Exception('Not a date');
+                }
             } catch (Exception $e) {
                 $errors['Due Date'] = 'This is an invalid due date';
             }
@@ -93,6 +96,9 @@ class ItemService
 
         if (empty($title)) {
             $errors['Title'] = 'This is a required field';
+        }
+        else if (strlen($title) > 255) {
+            $errors['Title'] = 'This can be no longer than 255 characters';
         }
 
         if (empty($errors)) {
