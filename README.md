@@ -1,5 +1,12 @@
 # To Do List
 
+Requirements:
+- Vagrant
+- Composer
+- Ansible
+- PHP 7.2
+- VirtualBox
+
 Main technologies:
 - Symfony2
 - MySQL
