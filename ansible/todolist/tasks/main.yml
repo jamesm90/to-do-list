@@ -24,4 +24,4 @@
     mode: 0775
 
 - name: Run Migrations
-  shell: 'php /var/www/todolist/maintenance/console.php d:m:m'
+  shell: 'echo y | php /var/www/todolist/maintenance/console.php d:m:m'
