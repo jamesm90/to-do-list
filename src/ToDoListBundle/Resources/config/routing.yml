@@ -1,0 +1,29 @@
+to_do_list:
+    path: /
+    defaults:
+        _controller: todolist.controller.to_do_list
+
+complete_list:
+    path: /complete
+    defaults:
+        _controller: todolist.controller.complete_list
+
+save_item:
+    path: /save
+    defaults:
+        _controller: todolist.controller.save_item
+
+remove_item:
+    path: /remove
+    defaults:
+        _controller: todolist.controller.remove_item
+
+change_item_status:
+    path: /change-status
+    defaults:
+        _controller: todolist.controller.change_status
+
+refresh_items:
+    path: /refresh-items
+    defaults:
+        _controller: todolist.controller.refresh_items

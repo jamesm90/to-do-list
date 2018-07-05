@@ -1,0 +1,71 @@
+---
+- name: Install the Webtatic repository
+  yum:
+    name: https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+    state: present
+
+- name: Install GCC
+  yum:
+    name: gcc
+    state: installed
+
+- name: Install PHP
+  yum:
+    name: php72w
+    state: installed
+
+- name: Install PHP Dev
+  yum:
+    name: php72w-devel
+    state: installed   
+
+- name: Install PHP CLI
+  yum:
+    name: php72w-cli
+    state: installed    
+
+- name: Install PHP DB Support
+  yum:
+    name: php72w-mysql
+    state: installed
+
+- name: Install PHP FPM
+  yum:
+    name: php72w-fpm
+    state: installed
+
+- name: Install PHP OpCache
+  yum:
+    name: php72w-opcache
+    state: installed
+
+- name: Install PHP Sodium
+  yum:
+    name: php72w-sodium
+    state: installed 
+
+- name: Install PHP XML
+  yum:
+    name: php72w-xml
+    state: installed 
+
+- name: Copy PHP ini
+  copy:
+    src: templates/php.ini.j2
+    dest: '/etc/php.ini'
+
+- name: Create system user
+  user:
+    name: tdl-www
+    group: apache
+
+- name: Copy PHP FPM Config
+  copy:
+    src: templates/www.conf.j2
+    dest: '/etc/php-fpm.d/www.conf'
+
+- name: Start PHP FPM
+  service:
+    name: php-fpm
+    enabled: yes
+    state: restarted

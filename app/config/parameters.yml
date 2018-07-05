@@ -1,0 +1,7 @@
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: todolistdb
+    database_user: tdl_user
+    database_password: abfbafbafbdv54thaschj
+    secret: 31b9c6144a1e3ae08f2ad2950450ec9e2a04b77b

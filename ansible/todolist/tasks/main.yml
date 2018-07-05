@@ -1,0 +1,24 @@
+---
+- name: Ensure var folder exists
+  file:
+    path: /var/www/todolist/var
+    state: directory
+    owner: tdl-www
+    group: apache
+    mode: 0775
+
+- name: Ensure logs folder exists
+  file:
+    path: /var/www/todolist/var/logs
+    state: directory
+    owner: tdl-www
+    group: apache
+    mode: 0775 
+
+- name: Ensure cache folder exists
+  file:
+    path: /var/www/todolist/var/cache
+    state: directory
+    owner: tdl-www
+    group: apache
+    mode: 0775

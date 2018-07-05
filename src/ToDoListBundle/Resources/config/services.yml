@@ -1,0 +1,13 @@
+imports:
+    - { resource: "services/controllers.yml" }
+
+services:
+    todolist.controller_utils:
+        class: ToDoListBundle\Utilities\ControllerUtilities
+        arguments:
+            - "@templating"
+
+    todolist.service.item:
+        class: ToDoListBundle\Service\ItemService
+        arguments:
+            - "@doctrine.orm.entity_manager"

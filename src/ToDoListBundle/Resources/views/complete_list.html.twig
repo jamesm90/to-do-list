@@ -1,0 +1,30 @@
+{% extends 'ToDoListBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container">   
+        <div class="container">
+            <br/>
+
+            <div id="incomplete-generic-error" class="alert alert-danger alert-dismissible hide" role="alert">
+                <a href="#" class="close js-dismiss"><span aria-hidden="true">&times;</span></a>
+                Unable to mark this task as incomplete! Please try again.
+            </div>
+
+            <div id="incomplete-success" class="alert alert-success alert-dismissible hide" role="alert">
+                <a href="#" class="close js-dismiss"><span aria-hidden="true">&times;</span></a>
+                Item <strong><span id="incomplete-title"></span></strong> successfully marked as incomplete
+            </div>            
+
+            <p class="hide" id="no-items-msg">There are currently no completed items on your to do list.</p>
+
+            <div id="item-holder">
+            {% include 'ToDoListBundle::items_list.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript" src="/js/complete_list.js"></script>
+{% endblock %}

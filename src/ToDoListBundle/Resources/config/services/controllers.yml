@@ -1,0 +1,39 @@
+services:
+    todolist.controller.to_do_list:
+        class: ToDoListBundle\Controller\ToDoListAction
+        public: true
+        arguments:
+            - "@todolist.controller_utils"
+            - "@todolist.service.item"
+
+    todolist.controller.complete_list:
+        class: ToDoListBundle\Controller\CompleteListAction
+        public: true
+        arguments:
+            - "@todolist.controller_utils"
+            - "@todolist.service.item"
+
+    todolist.controller.refresh_items:
+        class: ToDoListBundle\Controller\RefreshItemsAction
+        public: true
+        arguments:
+            - "@todolist.controller_utils"
+            - "@todolist.service.item"
+
+    todolist.controller.save_item:
+        class: ToDoListBundle\Controller\SaveItemAction
+        public: true
+        arguments:
+            - "@todolist.service.item"
+
+    todolist.controller.remove_item:
+        class: ToDoListBundle\Controller\RemoveItemAction
+        public: true
+        arguments:
+            - "@todolist.service.item"
+
+    todolist.controller.change_status:
+        class: ToDoListBundle\Controller\ChangeStatusAction
+        public: true
+        arguments:
+            - "@todolist.service.item"

@@ -1,0 +1,29 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@todolist.local
+    DocumentRoot /var/www/todolist/web
+    ServerName todolist.local
+    ErrorLog /var/log/httpd/error_log
+    <Directory /var/www/todolist/web>
+        AllowOverride All
+    </Directory>
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://127.0.0.1:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    SSLEngine on
+    SSLCertificateFile /etc/httpd/ssl/apache.crt
+    SSLCertificateKeyFile /etc/httpd/ssl/apache.key
+    # SSLCertificateChainFile /etc/httpd/ssl/apache-int.crt
+    SSLProtocol All -SSLv2 -SSLv3
+    ErrorLog /var/log/httpd/error_log
+    <Directory /var/www/todolist/web>
+        AllowOverride All
+    </Directory>
+    DocumentRoot /var/www/todolist/web
+    ServerName todolist.local
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://127.0.0.1:9000"
+    </FilesMatch>
+</VirtualHost>

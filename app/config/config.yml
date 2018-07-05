@@ -1,0 +1,46 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: "@ToDoListBundle/Resources/config/services.yml" }
+
+parameters:
+    locale: en
+
+framework:
+    secret: "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    session:
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset: utf8
+        default_table_options:
+            charset: utf8
+            collate: utf8_bin
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+
+ambta_doctrine_encrypt:
+    encryptor_class: Halite
+    secret_directory_path: '%kernel.project_dir%/../var'

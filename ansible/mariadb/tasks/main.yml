@@ -1,0 +1,59 @@
+---
+- name: Install MariaDB
+  yum:
+    name: mariadb
+    state: installed
+
+- name: Install MariaDBServer
+  yum:
+    name: mariadb-server
+    state: installed
+
+- name: Start MariaDB
+  service:
+    name: mariadb
+    enabled: yes
+    state: started
+
+- name: Update root password
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "adavf23gadvfa42wda"
+    state: present
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Install ~/.my.cnf
+  copy:
+    src: templates/home_my.cnf.j2
+    dest: "/root/.my.cnf"
+    mode: '0600'
+
+- name: Remove the test database
+  mysql_db:
+    name: test
+    state: absent
+
+- name: Remove anonymous users
+  mysql_user:
+    name: ''
+    host: "{{ item }}"
+    state: absent
+  with_items:
+    - localhost
+
+- name: Create the databases
+  mysql_db:
+    name: "todolistdb"
+    state: present
+
+- name: Create the user
+  mysql_user:
+    name: "tdl_user"
+    password: "abfbafbafbdv54thaschj"
+    priv: "*.*:ALL,GRANT"
+    host: "localhost"
+    state: present

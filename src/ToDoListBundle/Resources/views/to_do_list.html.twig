@@ -1,0 +1,110 @@
+{% extends 'ToDoListBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="container">
+            <div class="pull-right">
+                <button id="add-item" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> New Item</button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <br/>
+
+            <div id="complete-generic-error" class="alert alert-danger alert-dismissible hide" role="alert">
+                <a href="#" class="close js-dismiss"><span aria-hidden="true">&times;</span></a>
+                Unable to complete this task! Please try again.
+            </div>
+
+            <div id="complete-success" class="alert alert-success alert-dismissible hide" role="alert">
+                <a href="#" class="close js-dismiss"><span aria-hidden="true">&times;</span></a>
+                Item <strong><span id="complete-title"></span></strong> completed successfully 
+            </div>            
+
+            <p class="hide" id="no-items-msg">There are currently no items in your to do list.</p>
+
+            <div id="item-holder">
+            {% include 'ToDoListBundle::items_list.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block modals %}
+    <div class="modal" id="modal-delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Remove Item
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h5>   
+                </div>
+                <div class="modal-body">
+                    <div id="remove-generic-error" class="alert alert-danger hide" role="alert">
+                        Oops...something has gone wrong! Please try again.
+                    </div>
+
+                    <input type="hidden" id="id-to-delete" />
+                    Are you sure you want to remove <strong><span id="delete-item-title"></span></strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="remove-item" class="btn btn-danger">Remove Item</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-details" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><span id="modal-details-title"></span> Item</h5>     
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id-to-save" />
+
+                    <div class="panel panel-danger hide">
+                        <div class="panel-heading">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Please correct the following:
+                        </div>
+                        <div class="panel-body">
+                            <ul id="item-errors"></ul>
+                        </div>
+                    </div>
+
+                    <div id="item-generic-error" class="alert alert-danger" role="alert">
+                        Oops...something has gone wrong! Please try again.
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-title-field">Title *</label>
+                        <input class="form-control" type="text" id="item-title-field" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-desc-field">Description</label>
+                        <textarea class="form-control" id="item-desc-field"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-date-field">Due Date</label>
+                        <input class="form-control" type="date" id="item-date-field" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save-item" class="btn btn-primary">Save Item</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript" src="/js/to_do_list.js"></script>
+{% endblock %}

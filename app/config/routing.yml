@@ -1,0 +1,4 @@
+ratetheplayers_core:
+    resource: "@ToDoListBundle/Resources/config/routing.yml"
+    prefix: /
+    schemes: [https]

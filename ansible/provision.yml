@@ -1,0 +1,10 @@
+---
+-   hosts: all
+    become: yes
+    become_user: root
+
+    roles:
+        - { role: 'apache', tags: ['apache'] }
+        - { role: 'mariadb', tags: ['mariadb'] }
+        - { role: 'php', tags: ['php'] }
+        - { role: 'todolist', tags: ['todolist'] }
