@@ -15,6 +15,11 @@
     enabled: yes
     state: started
 
+- name: Install Python Connector
+  yum:
+    name: MySQL-python
+    state: installed
+
 - name: Update root password
   mysql_user:
     name: root
