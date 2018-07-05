@@ -25,3 +25,9 @@
 
 - name: Run Migrations
   shell: 'echo y | php /var/www/todolist/maintenance/console.php d:m:m'
+
+- name: Clear Cache
+  shell: 'rm -rf /var/www/todolist/var/cache/*'
+
+- name: Clear Logs
+  shell: 'rm -rf /var/www/todolist/var/logs/*'
