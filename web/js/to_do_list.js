@@ -115,11 +115,11 @@ function handleNoItems() {
 function addItemListeners() {
     $('#item-holder').find('.js-edit-link').click(function() {
         var panel = $(this).closest('.panel'),
-            title = $.trim($(panel).find('.panel-heading').html());
+            title = $.trim($(panel).find('.panel-heading').text());
 
         $('#item-title-field').val(title);
         $('#item-date-field').val($(panel).attr('data-due'));
-        $('#item-desc-field').val($(panel).find('.js-item-desc').html());
+        $('#item-desc-field').val($(panel).find('.js-item-desc').text());
         $('#id-to-save').val($(panel).attr('data-id'));
 
         $('#modal-details-title').html('Edit');
